@@ -1,0 +1,67 @@
+== Sharepoint_Event_Create
+This handler creates a new event within a SharePoint Calendar.
+
+=== Parameters
+[Title]
+  The title of the new event.
+[Location]
+  The location of the new event.
+[Start Date]
+  The start date of the new event in YYYY-MM-DD format.
+[Start Time]
+  The start time of the new event in HH:MM format. Both 12 hr (01:00 PM) and 24
+  hr (13:00) formatting are allowed. If it is an All-Day event, leave this
+  blank.
+[End Date]
+  The end date of the new event in YYYY-MM-DD format.
+[End Time]
+  The end time of the new event in HH:MM format. Both 12 hr (01:00 PM) and 24
+  hr (13:00) formatting are allowed. If it is an All-Day event, leave this
+  blank.
+[Description]
+  A description of the new event.
+[Category]
+  The category that this event will be filed under.
+[Calendar]
+  The name of the calendar you wish to add this event to. The default calendar
+  is 'Calendar'.
+
+=== Results
+This handler does not return any results.
+
+==== Sample Configuration
+Title:                   Sample Title
+Location:                City Hall
+Start Date:              2013-11-03
+Start Time:              03:00 PM
+End Date:                2013-11-04
+End Time:                05:00 PM
+Description:             This is a sample event
+Category:                Work
+Calendar:                Calendar
+
+=== Detailed Description
+This handler makes a SOAP call (using Savon) to the SharePoint Web 
+Services to create a new event in a SharePoint calendar. After 
+configuring Savon to work with the given account credentials, a few
+inputted values are checked for validity while the time parameters are
+configured so that SharePoint will recognize them. Next, the Batch XML 
+structure is built to give the Web Service the information it needs to 
+create the new event, which is then passed via a SOAP call to SharePoint, 
+where the event is created on the specified calendar. Any errors that
+occur during this process will be caught and re-raised by the handler.
+Authentication is done through SSL, so the SharePoint site being accessed
+needs to be setup to allow SSL connections.
+
+* Make sure the SharePoint Web Services database is turned on.
+
+=== How to Obtain the Homepage URL Info Value
+To find the homepage url, all you have to do is look at the URL of any
+page on the SharePoint site. The url that should be inputted should
+contain both the base url (the top-most site in the collection) and the
+sub-site that you are on. For example, given the following URL:
+  https://sharepoint.company.com/development/SitePages/Home.aspx
+The base site is "sharepoint.company.com", the sub-site is "development"
+and the 'HomePage URL' task info values should be set to:
+  https://sharepoint.company.com/development
+  

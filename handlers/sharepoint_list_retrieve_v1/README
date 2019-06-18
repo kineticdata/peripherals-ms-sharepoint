@@ -1,0 +1,69 @@
+== Sharepoint_List_Retrieve
+This handler retrieves the contents of a list from the configured SharePoint 
+site and returns a JSON representation of the list.
+
+=== Parameters
+[List Name]
+  The name of the list that should be retrieved.
+
+=== Results
+[JSON]
+  A JSON table that returns all of the lists on the specified site, with
+  information such as Title, Description, ID, etc. for each list.
+
+For an example of the results, please see the 'Sample Results String' section
+below.
+
+==== Sample Configuration
+List Name:              Tasks
+
+==== Sample JSON Result Value
+{
+  "list_length": 1,
+  "items": [
+    {
+      "_level": "1",
+      "_moderation_status": "0",
+      "attachments": "0",
+      "created": "2012-08-09 11:03:57",
+      "created_date": "1;#2012-08-09 11:03:57",
+      "file_leaf_ref": "1;#1_.000",
+      "file_ref": "1;#site1/Lists/Sample List/1_.000",
+      "fs_obj_type": "1;#0",
+      "id": "1",
+      "link_title": "First Item",
+      "meta_info": "1;#",
+      "modified": "2012-08-09 11:03:57",
+      "owshiddenversion": "1",
+      "perm_mask": "0x7fffffffffffffff",
+      "title": "First Item",
+      "unique_id": "1;#{4AF599B8-81A3-4399-AC34-7DD669B8525D}"
+    }
+  ]
+}
+
+=== Detailed Description
+This handler makes a SOAP call (using Savon) to the SharePoint Web 
+Services to get the contents of a list from a specific SharePoint 
+site. As long as the user has sufficient privileges, the first call to 
+SharePoint returns a hash containing all of the Site lists and their 
+details. The handler then uses that list to get the correct list id that
+corresponds with the list title given during input and then makes another
+SOAP call to get the the list contents which are returned in a hash. The 
+handler then takes that response, cleans up the hash, and then converts it 
+to a JSON table to allow for easy access of the information. Any errors 
+that occur during this process will be caught and re-raised by the handler.
+Authentication is done through SSL, so the SharePoint site being accessed 
+needs to be setup to allow SSL connections.
+
+* Make sure the SharePoint Web Services database is turned on.
+
+=== How to Obtain the Homepage URL Info Value
+To find the homepage url, all you have to do is look at the URL of any
+page on the SharePoint site. The url that should be inputted should
+contain both the base url (the top-most site in the collection) and the
+sub-site that you are on. For example, given the following URL:
+  https://sharepoint.company.com/development/SitePages/Home.aspx
+The base site is "sharepoint.company.com", the sub-site is "development"
+and the 'HomePage URL' task info values should be set to:
+  https://sharepoint.company.com/development

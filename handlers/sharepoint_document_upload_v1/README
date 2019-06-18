@@ -1,0 +1,43 @@
+== Sharepoint_Document_Upload
+This handler uploads a file to a SharePoint document library.
+
+=== Parameters
+[Document Library Name]
+  The title of the document library that the file will be placed in.
+[Document Name]
+  The name that the document will have on the SharePoint server.
+[Attachment Question Menu Label]
+  The menu label of the attachment question where the photo will be uploaded to.
+
+=== Results
+This handler does not return any results
+
+==== Sample Configuration
+Document Library Name:                Shared Documents
+Document Name:                        @answers['Document']
+Attachment Question Menu Label:       Document
+
+=== Detailed Description
+This handler uploads a file to a SharePoint document library using an 
+HTTP Put method call. Before making the call, the handler builds the url based
+on the inputted parameters. This url is the location where the file will be 
+uploaded to. The call is then made using the Rest Client gem and the file is 
+uploaded to the specified SharePoint document library. If the document library 
+has versioning enabled, a duplicate file name will be uploaded as a new version
+and the file will be overwritten if versioning is disabled (versioning is 
+disabled by default in new libraries). Any errors that occurs during this process 
+will be caught and re-raised by the handler. Authentication is done through SSL, 
+so the SharePoint site being accessed needs to be setup to allow SSL connections.
+
+* Make sure the Sharepoint Web Services database is turned on.
+
+=== How to get the Homepage URL
+To find the homepage url, all you have to do is look at the URL of any
+page on the Sharepoint site. The url that should be inputted should
+contain both the base url (the top-most site in the collection) and the
+sub-site that you are on. Using the example below, the url that would be
+inputted is "https://sharepoint.company.com/development", where "development"
+is the sub-site and "sharepoint.compnay.com" is the base site.
+
+* Parameter Example
+https://sharepoint.company.com/development/SitePages/Home.aspx

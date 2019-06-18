@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="sharepoint_announcement_create" name="Sharepoint Task Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler creates a new announcement in the SharePoint Tasks list</description>
+    <helpurl>http://ktc.kineticdata.com/handler/sharepoint_announcement_create/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="announcement_list" label="Announcement List Name" required="true"
+            tooltip="The name of the announcement list that the announcement will be added to. The default announcement list is 'Announcements'.">Announcements</parameter>
+        <parameter id="title" label="Title" required="true"
+            tooltip="The title of the new announcement."/>
+        <parameter id="body" label="Body" required="false"
+            tooltip="The body of the new announcement."/>
+        <parameter id="expire_date" label="Expire Date" required="false"
+            tooltip="The date that the annoucement expires in YYYY-MM-DD format."/>
+    </parameters>
+    <handler name="sharepoint_announcement_create" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="domain">&lt;%= @info['domain'] %&gt;</info>
+            <info name="homepage_url">&lt;%= @info['homepage_url'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="announcement_list">&lt;%= @parameters['announcement_list'] %&gt;</parameter>
+            <parameter name="title">&lt;%= @parameters['title'] %&gt;</parameter>
+            <parameter name="body">&lt;%= @parameters['body'] %&gt;</parameter>
+            <parameter name="expire_date">&lt;%= @parameters['expire_date'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

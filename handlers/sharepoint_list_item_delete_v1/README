@@ -1,0 +1,23 @@
+== Sharepoint List Item Delete
+Deletes an items on a given list in SharePoint using the REST API.
+
+=== Parameters
+[List Name]
+  The name of the list to delete the item from.
+[Item Id]
+  The id of the item to delete.
+
+=== Results
+This handler returns no results.
+
+==== Sample Configuration
+List Name:              Sample List
+Item Id:                3
+
+=== Detailed Description
+This handler deletes an item on a given Sharepoint list using the REST API and basic authentication.
+The item to be deleted is determined based on the item id that is passed (a standard id is an
+integer) and the list name. Any errors that happen during the call are caught and re-raised and the
+handler will return an empty result set after the end of a successful deletion.
+
+* Make sure the SharePoint Web Services database is turned on.

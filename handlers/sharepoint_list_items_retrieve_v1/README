@@ -1,0 +1,22 @@
+== Sharepoint List Items Retrieve
+Retrieves the items from a list SharePoint list using the REST API.
+
+=== Parameters
+[List Name]
+  The name of the list that the items will be retrieved from.
+
+=== Results
+[Items]
+  An array containing JSON representations of the items contained on the list.
+
+==== Sample Configuration
+List Name:              Sample List
+
+=== Detailed Description
+This handler returns a list of items for a given Sharepoint list using the REST API and basic
+authentication. All the items from the specified list are returned in a JSON array with each item
+being a JSON object with the key/values corresponding to the column labels and values. Any errors
+that happen during the call are caught and re-raised and the handler return the JSON array upon a
+successful call.
+
+* Make sure the SharePoint Web Services database is turned on.

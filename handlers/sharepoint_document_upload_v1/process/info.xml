@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taskInfo version="1.0">
+    <info name="username" description="The username of the Sharepoint account."></info>
+    <info name="password" type="encrypted" description="The password of the Sharepoint account."></info>
+    <info name="domain" description="The domain of the Sharepoint server where the information will be pulled from."></info>
+    <info name="homepage_url" description="The url for the homepage of the Sharepoint site that this handler will have access to."></info>
+    <info name="remedy_server"  description="Remedy Server Name or IP Address"></info>
+    <info name="remedy_username" description="Remedy Login Name"></info>
+    <info name="remedy_password" type="encrypted" description="Remedy Password"></info>
+    <info name="remedy_port" description="Remedy TCP Port">0</info>
+    <info name="remedy_prognum" description="Remedy RPC Prognum">0</info>
+    <info name="remedy_authentication" description="Remedy Authentication String"></info>
+    <info name="enable_debug_logging" description="Enable debug logging if the value is set to 'Yes'.">No</info>
+</taskInfo>

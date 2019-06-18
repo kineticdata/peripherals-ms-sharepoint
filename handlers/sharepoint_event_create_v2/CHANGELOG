@@ -1,0 +1,5 @@
+Sharepoint_Event_Create_V1 (2012-08-03)
+* Initial version.  See README for details.
+
+Sharepoint_Event_Create_V2 (2013-10-08)
+* JOpenSSL updated to version 0.8.8 and self signed cert info value removed.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taskInfo version="1.0">
+    <info name="username" description="The username of the Sharepoint account."></info>
+    <info name="password" type="encrypted" description="The password of the Sharepoint account."></info>
+    <info name="domain" description="The domain of the Sharepoint server where the information will be pulled from."></info>
+    <info name="self-signed_cert" description="If the Certificate that you are using for verification is self-signed, then input 'true'. If it is not, input 'false'."></info>
+    <info name="homepage_url" description="The url for the homepage of the Sharepoint site that this handler will have access to."></info>
+    <info name="enable_debug_logging" description="Enable debug logging if the value is set to 'Yes'.">No</info>
+</taskInfo>

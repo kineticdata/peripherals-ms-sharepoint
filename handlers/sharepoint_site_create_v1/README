@@ -1,0 +1,49 @@
+== Sharepoint_Site_Create
+This handler adds a new Site to a SharePoint top level site.
+
+=== Parameters
+[Title]
+  The title of the new Site.
+[URL]
+  The URL that will identify the new site. This new URL will be appended to 
+  the top level URL, so the final URL will have the form of 
+  http://homepage_url/new_sites_url.
+[Description]
+  A description of the new Site.
+[Site Template]
+  The site template that will be used for the new Site. Will be chosen from the
+  drop down list.
+
+=== Results
+This handler does not return any results.
+
+==== Sample Configuration
+Title:                   Testing Handler
+URL:                     testinghandler
+Description:             This Site was created from a handler
+Site Template:           Blank Site 
+
+=== Detailed Description
+This handler makes a SOAP call (using Savon) to the SharePoint Web Services to 
+create a new site under the given homepage url. After configuring Savon to 
+work with the given account credentials (make sure that the account has
+permission to create a site), the Site Template value is modified so SharePoint 
+will recognize it. The inputted information is then passed to SharePoint via a 
+SOAP call, where the Site is created with the given url appended to the homepage 
+url. The newly created Site will not appear in the quick launch or top link bar 
+of the parent website, so it will be needed to manually added before it shows up 
+there. Any errors that occur during this process will be caught and re-raised by 
+the handler. Authentication is done through SSL, so the SharePoint site being 
+accessed needs to be setup to allow SSL connections.
+
+* Make sure the SharePoint Web Services database is turned on.
+
+=== How to Obtain the Homepage URL Info Value
+To find the homepage url, all you have to do is look at the URL of any
+page on the SharePoint site. The url that should be inputted should
+contain both the base url (the top-most site in the collection) and the
+sub-site that you are on. For example, given the following URL:
+  https://sharepoint.company.com/development/SitePages/Home.aspx
+The base site is "sharepoint.company.com", the sub-site is "development"
+and the 'HomePage URL' task info values should be set to:
+  https://sharepoint.company.com/development

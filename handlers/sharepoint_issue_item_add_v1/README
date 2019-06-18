@@ -1,0 +1,61 @@
+== Sharepoint_IssueItem_Add
+This handler creates a new issue item in a SharePoint Issue Tracking list.
+
+=== Parameters
+[Issue Tracking List Name]
+  The name of the issue tracking list that the issue will be added to.
+[Title]
+  The title of the new issue.
+[Assigned To]
+  The user who you want to assign this issue to in the form of DOMAIN\username.
+[Issue Status]
+  The status of the new issue.
+[Priority]
+  The priority of the new issue.
+[Description]
+  A description of the new issue.
+[Comments]
+  Any comments that will be added to the new issue.
+[Due Date]
+  The end date of the new issue in YYYY-MM-DD format.
+
+
+=== Results
+This handler does not return any results
+
+==== Sample Configuration
+Issue Tracking List Name:          Issue Tracking
+Title:                             The widgets are missing
+Assigned to:                       SHAREPOINT\another.user
+Issue Status:                      Active
+Priority:                          (2) Normal
+Description:                       They got lost in transit...
+Comments:                          Check with FedEx to see if they know anything
+Due Date:                          2013-11-01
+
+=== Detailed Description
+This handler makes a SOAP call (using Savon) to the SharePoint Web 
+Services to create a new issue in an Issue Tracking list. After configuring 
+Savon to work with the given account credentials, a few inputted values are 
+checked for validity while the parameters for 'Assigned To' is modified to fit 
+SharePoint standards. Priority and Issue Status are both values that are picked
+out of a dropdown list, with '(2) Normal' and 'Acitve' as their respective
+default values. Next, the Batch XML structure is built to give the Web Service 
+the information it needs to create the new issue, which is then passed via
+a SOAP call to SharePoint, where the issue is created. Any errors that
+occur during this process will be caught and re-raised by the handler.
+Authentication is done through SSL, so the SharePoint site being accessed
+needs to be setup to allow SSL connections.
+
+* Make sure the SharePoint Web Services database is turned on.
+
+=== How to Obtain the Homepage URL Info Value
+To find the homepage url, all you have to do is look at the URL of any
+page on the SharePoint site. The url that should be inputted should
+contain both the base url (the top-most site in the collection) and the
+sub-site that you are on. For example, given the following URL:
+  https://sharepoint.company.com/development/SitePages/Home.aspx
+The base site is "sharepoint.company.com", the sub-site is "development"
+and the 'HomePage URL' task info values should be set to:
+  https://sharepoint.company.com/development
+  

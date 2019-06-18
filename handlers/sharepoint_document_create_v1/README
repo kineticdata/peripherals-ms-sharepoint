@@ -1,0 +1,44 @@
+== Sharepoint_Document_Create
+This handler creates a file that is then uploaded to a SharePoint document 
+library.
+
+=== Parameters
+[Document Library Name]
+  The title of the document library that the file will be placed in.
+[Document Name]
+  The name of the new file.
+[Document Contents]
+  The text to be put in the file that will be uploaded to the document library.
+
+=== Results
+This handler does not return any results
+
+==== Sample Configuration
+Document Library Name:    Shared Documents
+Document Name:            test_file.txt
+Document Contents:        This is some sample text that will go in the file.
+
+=== Detailed Description
+This handler create a file that is then uploaded to a SharePoint document 
+library using an HTTP Put method call. Before making the call, the handler
+appends an extension to the file (if necessary). It then uses the given
+parameters to form the URL where the new file will be uploaded to. Lastly,
+the call is made (using the Rest Client gem) and the file is created and 
+uploaded to the specified SharePoint document library. If the document library 
+has versioning enabled, a duplicate file name will be uploaded as a new version
+and the file will be overwritten if versioning is disabled (versioning is 
+disabled by default in new libraries). Any errors that occur during this process 
+will be caught and re-raised by the handler. Authentication is done through SSL, 
+so the SharePoint site being accessed needs to be setup to allow SSL connections.
+
+* Make sure the SharePoint Web Services database is turned on.
+
+=== How to Obtain the Homepage URL Info Value
+To find the homepage url, all you have to do is look at the URL of any
+page on the SharePoint site. The url that should be inputted should
+contain both the base url (the top-most site in the collection) and the
+sub-site that you are on. For example, given the following URL:
+  https://sharepoint.company.com/development/SitePages/Home.aspx
+The base site is "sharepoint.company.com", the sub-site is "development"
+and the 'HomePage URL' task info values should be set to:
+  https://sharepoint.company.com/development

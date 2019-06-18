@@ -1,0 +1,29 @@
+== Sharepoint List Item Update
+Updates an item on a given list in SharePoint using the REST API.
+
+=== Parameters
+[List Name]
+  The name of the list that the item should be updated on.
+[Item Id]
+  The id of the item to update.
+[Item (JSON)]
+  A JSON representation of what the item should be updated to.
+
+=== Results
+This handler returns no results.
+
+==== Sample Configuration
+List Name:              Sample List
+Item Id:                3
+Item (JSON):             {"Title": "Updated Title", "Random Number": 17, "Random Date": "2017-12-31"}
+
+=== Detailed Description
+This handler updates an item for a given Sharepoint list using the REST API and basic authentication.
+The item content to be updated is passed as a JSON string, where the keys are the list item labels
+(Title, Due Date, etc) and the values are the values to place in those columns when the item is
+updated. The field keys for a list can also be found by using Sharepoint List Items Retrieve to get
+an already created item, which can then be used to determine which keys match up with what columns.
+Any errors that happen during the call are caught and re-raised and the handler will return an empty
+result set upon a successful update.
+
+* Make sure the SharePoint Web Services database is turned on.

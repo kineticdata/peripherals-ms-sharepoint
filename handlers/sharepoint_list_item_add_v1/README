@@ -1,0 +1,27 @@
+== Sharepoint List Item Add
+Creates an item for a given list in SharePoint using the REST API.
+
+=== Parameters
+[List Name]
+  The name of the list that the item will be added to.
+[Item (JSON)]
+  A JSON representation of the item that should be created.
+
+=== Results
+[Id]
+  Id of the newly created list item
+
+==== Sample Configuration
+List Name:              Sample List
+Item (JSON):             {"Title": "Sample Title", "Random Number": 15, "Random Date": "2017-12-22"}
+
+=== Detailed Description
+This handler creates an item for a given Sharepoint list using the REST API and basic authentication.
+The item to be created is passed as a JSON string, where the keys are the list item labels (Title,
+Due Date, etc) and the values are the values to place in those columns when the item is created.
+The field keys for a list can also be found by using Sharepoint List Items Retrieve to get an
+already created item, which can then be used to determine which keys match up with what columns.
+Any errors that happen during the call are caught and re-raised and the handler will return the Id
+of the new item after the end of a successful call.
+
+* Make sure the SharePoint Web Services database is turned on.

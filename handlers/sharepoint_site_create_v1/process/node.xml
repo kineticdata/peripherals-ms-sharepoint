@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="sharepoint_site_create" name="Sharepoint Site Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler adds a new Site to a SharePoint top level site.</description>
+    <helpurl>http://ktc.kineticdata.com/handler/sharepoint_site_create/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="title" label="Title" required="true"
+            tooltip="The title of the new Site."/>
+        <parameter id="url" label="URL" required="true"
+            tooltip="The URL that will identify the new site. This new URL will be appended to the homepage URL, so the final URL will have the form of http://homepage_url/new_sites_url."/>
+        <parameter id="description" label="Description" required="false"
+            tooltip="A description of the new Site."/>
+        <parameter id="site_template" label="Site Template" required="true"
+            tooltip="The site template that will be used for the new Site."
+            menu="Team Site,Blank Site,Document Workspace,Basic Meeting Workspace,Decision Meeting Workspace,Social Meeting Workspace,Multipage Meeting Workspace,Blog Site,Wiki Site,Group Work Site">Blank Site</parameter>
+    </parameters>
+    <handler name="sharepoint_site_create" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="domain">&lt;%= @info['domain'] %&gt;</info>
+            <info name="homepage_url">&lt;%= @info['homepage_url'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="title">&lt;%= @parameters['title'] %&gt;</parameter>
+            <parameter name="url">&lt;%= @parameters['url'] %&gt;</parameter>
+            <parameter name="description">&lt;%= @parameters['description'] %&gt;</parameter>
+            <parameter name="site_template">&lt;%= @parameters['site_template'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

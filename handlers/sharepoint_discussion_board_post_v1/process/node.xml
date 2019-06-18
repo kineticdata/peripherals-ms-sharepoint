@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="sharepoint_discussion_board_post" name="Sharepoint Discussion Board Post" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler creates a new post in a SharePoint Discussion Board</description>
+    <helpurl>http://ktc.kineticdata.com/handler/sharepoint_discussion_board_post/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="discussion_list" label="Discussion Post List Name" required="true"
+            tooltip="The name of the discussion board list that the message will be posted to."/>
+        <parameter id="subject" label="Subject" required="true"
+            tooltip="The subject of the new dicussion post."/>
+        <parameter id="body" label="Body" required="false"
+            tooltip="The body of the new discussion post."/>
+    </parameters>
+    <handler name="sharepoint_discussion_board_post" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="domain">&lt;%= @info['domain'] %&gt;</info>
+            <info name="homepage_url">&lt;%= @info['homepage_url'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="discussion_list">&lt;%= @parameters['discussion_list'] %&gt;</parameter>
+            <parameter name="subject">&lt;%= @parameters['subject'] %&gt;</parameter>
+            <parameter name="body">&lt;%= @parameters['body'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

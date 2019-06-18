@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="sharepoint_list_item_add" name="SharePoint List Item Add"
+    schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Creates an items for a given list in SharePoint using the REST API.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="list_name" label="List Name" required="true"
+            tooltip="The name of the list that the item will be added to."/>
+        <parameter id="item" label="Item (JSON)" required="true"
+            tooltip="A JSON representation of the item that should be created."/>
+    </parameters>
+    <handler name="sharepoint_list_item_add" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="domain">&lt;%= @info['domain'] %&gt;</info>
+            <info name="sharepoint_location">&lt;%= @info['sharepoint_location'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="list_name">&lt;%= @parameters['list_name'] %&gt;</parameter>
+            <parameter name="item">&lt;%= @parameters['item'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml">
+        <result name="Id" />
+    </results>
+</taskDefinition>

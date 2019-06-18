@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="sharepoint_list_item_delete" name="SharePoint List Item Delete"
+    schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Deletes an items on a given list in SharePoint using the REST API.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="list_name" label="List Name" required="true"
+            tooltip="The name of the list to delete the item from."/>
+        <parameter id="item_id" label="Item Id" required="true"
+            tooltip="The id of the item to delete." />
+    </parameters>
+    <handler name="sharepoint_list_item_delete" version="1">
+        <infos>
+            <info name="username">&lt;%= @info['username'] %&gt;</info>
+            <info name="password">&lt;%= @info['password'] %&gt;</info>
+            <info name="domain">&lt;%= @info['domain'] %&gt;</info>
+            <info name="sharepoint_location">&lt;%= @info['sharepoint_location'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="list_name">&lt;%= @parameters['list_name'] %&gt;</parameter>
+            <parameter name="item_id">&lt;%= @parameters['item_id'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml" />
+</taskDefinition>
