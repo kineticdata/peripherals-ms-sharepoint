@@ -5,34 +5,14 @@ require 'time'
 
 # Load the JRuby Open SSL library unless it has already been loaded.  This
 # prevents multiple handlers using the same library from causing problems.
-if not defined?(Jopenssl)
-  # Calculate the location of this file
-  handler_path = File.expand_path(File.dirname(__FILE__))
-
-  # Calculate the location of our library and add it to the Ruby load path
-  library_path = File.join(handler_path, 'vendor/bouncy-castle-java-1.5.0146.1/lib')
-  $:.unshift library_path
-  # Require the library
-  require 'bouncy-castle-java'
-
-  # Calculate the location of our library and add it to the Ruby load path
-  library_path = File.join(handler_path, 'vendor/jruby-openssl-0.7.7/lib/1.8')
-  $:.unshift library_path
-  library_path = File.join(handler_path, 'vendor/jruby-openssl-0.7.7/lib/shared')
-  $:.unshift library_path
-  # Require the library
+# Updated to use JRuby's built-in jruby-openssl (compatible with JRuby 9.4.x)
+if not defined?(OpenSSL)
+  # Use JRuby's built-in openssl support (jruby-openssl is bundled with JRuby 9.4+)
   require 'openssl'
-  # Require the version constant
-  require 'jopenssl/version'
 end
 
-# Validate the the loaded openssl library is the library that is expected for
-# this handler to execute properly.
-if not defined?(Jopenssl::Version::VERSION)
-  raise "The Jopenssl class does not define the expected VERSION constant."
-elsif Jopenssl::Version::VERSION != '0.7.7'
-  raise "Incompatible library version #{Jopenssl::Version::VERSION} for Jopenssl.  Expecting version 0.7.7."
-end
+# Note: Version validation removed as we're using JRuby's built-in jruby-openssl
+# which is automatically compatible with the JRuby version being used.
 
 
 
